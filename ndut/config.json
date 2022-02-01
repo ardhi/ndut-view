@@ -1,0 +1,12 @@
+{
+  "env": {},
+  "minify": {
+    "removeComments": true,
+    "removeCommentsFromCDATA": true,
+    "collapseWhitespace": true,
+    "collapseBooleanAttributes": true,
+    "removeAttributeQuotes": true,
+    "removeEmptyAttributes": true
+  },
+  "dependency": ["ndut-route", "ndut-extra"]
+}

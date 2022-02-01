@@ -1,0 +1,30 @@
+{
+  "name": "ndut-view",
+  "version": "0.6.0",
+  "description": "View Engine for Ndut Framework",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ardhi/ndut-view.git"
+  },
+  "keywords": [
+    "ndut",
+    "view",
+    "engine",
+    "nunjucks",
+    "template",
+    "fastify"
+  ],
+  "author": "Ardhi Lukianto <ardhi@lukianto.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ardhi/ndut-view/issues"
+  },
+  "homepage": "https://github.com/ardhi/ndut-view#readme",
+  "dependencies": {
+    "html-minifier": "^4.0.0",
+    "nunjucks": "^3.2.3"
+  }
+}
