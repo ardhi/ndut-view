@@ -8,5 +8,5 @@
     "removeAttributeQuotes": true,
     "removeEmptyAttributes": true
   },
-  "dependency": ["ndut-route", "ndut-extra", "ndut-static"]
+  "dependency": ["ndut-route", "ndut-static"]
 }
