@@ -1,5 +1,6 @@
 {
   "env": {},
+  "theme": "auto",
   "minify": {
     "removeComments": true,
     "removeCommentsFromCDATA": true,

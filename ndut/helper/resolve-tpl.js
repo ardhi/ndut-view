@@ -15,12 +15,17 @@ module.exports = function (name, defTheme = 'default') {
   if (_.isEmpty(ext)) ext = '.html'
   let newFile = null
   if (theme !== 'default') {
-    const tcfg = getNdutConfig(theme)
-    if (tcfg) {
-      newFile = `${tcfg.dir}/ndutView/theme/${cfg.alias}/${_.trimStart(file, '/')}${ext}`
-      if (!fs.existsSync(newFile)) newFile = null
-    }
+    const themeDef = this.ndutView.helper.getTheme(theme)
+    newFile = `${themeDef.dir}/${cfg.alias}/${_.trimStart(file, '/')}${ext}`
+    if (!fs.existsSync(newFile)) newFile = null
   }
-  if (!newFile) newFile = `${cfg.dir}/ndutView/template/${_.trimStart(file, '/')}${ext}`
+  if (!newFile) {
+    newFile = `${cfg.dir}/ndutView/template/${_.trimStart(file, '/')}${ext}`
+    if (!fs.existsSync(newFile)) newFile = null
+  }
+  if (!newFile) {
+    const themeDef = this.ndutView.helper.getTheme('default')
+    newFile = `${themeDef.dir}/${_.trimStart(file, '/')}${ext}`
+  }
   return newFile
 }
