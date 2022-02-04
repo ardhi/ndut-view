@@ -1,4 +1,3 @@
-const nunjucks = require('nunjucks')
 const getLoader = require('../lib/nunjucks/loader')
 const handleGlobal = require('../lib/handle-global')
 const handleFilter = require('../lib/handle-filter')
@@ -10,7 +9,6 @@ const plugin = async function (scope, options) {
   const opts = _.omit(options.env, ['web', 'express'])
   const Loader = getLoader(scope, options)
   scope.log.debug('* Setup nunjucks environment')
-  // const env = new nunjucks.Environment(new Loader(), opts)
   const env = new Environment(new Loader(), opts)
   scope.ndutView.env = env
   scope.log.debug('* Add globals')
