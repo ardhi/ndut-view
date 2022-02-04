@@ -5,15 +5,20 @@ module.exports = function (name, locals, request) {
   const config = getConfig()
   const cfg = getNdutConfig('ndut-view')
   const themeDef = this.ndutView.helper.detectTheme(request)
+  const env = this.ndutView.env
   const getCfg = () => {
     const cfgStatic = getNdutConfig('ndut-static')
     return {
       staticPrefix: cfgStatic.prefix,
+      lang: request.lang,
       theme: _.omit(themeDef, ['dir'])
     }
   }
-  const env = this.ndutView.env
   env.addGlobal('getCfg', getCfg)
+  if (request.i18n) {
+    this.ndutView.env.addGlobal('t', request.i18n.t)
+    this.ndutView.env.addGlobal('te', request.i18n.exists)
+  }
   let result = env.render(name, locals, themeDef.name)
   if (cfg.minify && !config.debug) result = minify(result, cfg.minify)
   return result
