@@ -5,6 +5,7 @@ module.exports = function (name, locals, request) {
   const config = getConfig()
   const cfg = getNdutConfig('ndut-view')
   const themeDef = this.ndutView.helper.detectTheme(request)
+  console.log(themeDef)
   const env = this.ndutView.env
   const getCfg = () => {
     const cfgStatic = getNdutConfig('ndut-static')
