@@ -5,7 +5,12 @@ const handleExtension = require('../lib/handle-extension')
 const Environment = require('../lib/nunjucks/environment')
 
 const plugin = async function (scope, options) {
-  const { _ } = scope.ndut.helper
+  const { _, getConfig } = scope.ndut.helper
+  const config = getConfig()
+  if (config.httpServer.disabled) {
+    scope.log.warn('HTTP server is disabled, view canceled')
+    return
+  }
   const opts = _.omit(options.env, ['web', 'express'])
   const Loader = getLoader(scope, options)
   scope.log.debug('* Setup nunjucks environment')
