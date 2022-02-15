@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% include "view:/partial/theme-css" %}
+    {% include "view:/partial/theme" %}
     <title>{{ page.title }}</title>
   </head>
   <body>
@@ -12,7 +12,7 @@
       <section>
         {% block main %}{% endblock %}
       </section>
-      <script src="/{{ getCfg().staticPrefix }}/view/bootstrap/js/bootstrap.bundle.min.js"></script>
+      {% include "view:/partial/script" %}
     </div>
   </body>
 </html>

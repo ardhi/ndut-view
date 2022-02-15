@@ -1,8 +1,9 @@
-const getLoader = require('../lib/nunjucks/loader')
 const handleGlobal = require('../lib/handle-global')
 const handleFilter = require('../lib/handle-filter')
 const handleExtension = require('../lib/handle-extension')
-const Environment = require('../lib/nunjucks/environment')
+const handleComponent = require('../lib/handle-component')
+const getLoader = require('../lib/engine/loader')
+const Environment = require('../lib/engine/environment')
 
 const plugin = async function (scope, options) {
   const { _, getConfig } = scope.ndut.helper
@@ -16,11 +17,9 @@ const plugin = async function (scope, options) {
   scope.log.debug('* Setup nunjucks environment')
   const env = new Environment(new Loader(), opts)
   scope.ndutView.env = env
-  scope.log.debug('* Add globals')
+  await handleComponent.call(scope)
   await handleGlobal.call(scope)
-  scope.log.debug('* Add filters')
   await handleFilter.call(scope)
-  scope.log.debug('* Add extensions')
   await handleExtension.call(scope)
 }
 
