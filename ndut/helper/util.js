@@ -4,6 +4,7 @@ class Util {
   constructor (scope) {
     this.scope = scope
     this.colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark']
+    this.breakpoints = ['sm', 'md', 'lg', 'xl', 'xxl']
     this.sizes = ['md', 'lg']
     this.translates = ['middle']
     this.collapses = ['horizontal']
@@ -30,6 +31,23 @@ class Util {
     delete opts[attr]
   }
 
+  replaceToClassMisc (opts = {}) {
+    const { _ } = this.scope.ndut.helper
+    if (opts.active) {
+      opts.ariaCurrent = opts.ariaCurrent || 'true'
+      opts.class.push('active')
+      delete opts.active
+    }
+    if (opts.disabled) {
+      opts.ariaDisabled = opts.ariaDisabled || 'true'
+      if ([opts.el, opts.tag].includes('a')) {
+        opts.class.push('disabled')
+        delete opts.disabled
+      }
+      delete opts.href
+    }
+  }
+
   replaceToClassByEl (attr, list, opts = {}) {
     const noSuffix = ['xs']
     const name = { span: 'bg', badge: 'bg', button: 'btn', alert: 'alert', buttonGroup: 'btn-group', a: 'btn', div: 'bg' }
@@ -53,6 +71,7 @@ class Util {
     })
     this.replaceToClass('translate', this.translates, opts)
     this.replaceToClass('collapse', this.collapses, opts)
+    this.replaceToClassMisc(opts)
     this.replaceToClassByEl('color', this.colors, opts)
     this.replaceToClassByEl('size', this.sizes, opts)
     const options = _.omit(opts, ['content', 'el', 'tag', 'newLine', 'selfClose', 'compName', 'outline'])
